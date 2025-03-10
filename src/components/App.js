@@ -1,58 +1,27 @@
-import React, {useState,useEffect} from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { v4 as uuidv4 } from 'uuid';  
-import './App.css';
-import Header from './Header';  
-import AddContact from './AddContact';
-import ContactList from './ContactList';
+import './App.css'; // Import your CSS file if needed
+import Navbar from "./Navbar/Navbar"; 
+import Home from "./pages/Home"; 
+import KeyFeature from "./pages/KeyFeature";
+import Pricing from "./pages/Pricing";
+import Timonial from "./pages/Timonial";
+import Demo from "./pages/Demo";
 
 
 function App(){
-  const newId = uuidv4();  
-
-const LOCAL_STORAGE_KEY="contcts";
-const[contacts,setContacts]=useState([]);
-  
-const addContactHandler= (contact) =>{
-   console.log(contact)
-   setContacts([...contacts,{id:uuidv4(), ...contact}]) 
-}
-
-const removeContactHandler=(id)=>{
-      const newContactList=contacts.filter((contact)=>{
-        return contact.id!== id;
-      })
-      setContacts(newContactList);
-}
-useEffect(() => {
-  const retrievedContacts = localStorage.getItem(LOCAL_STORAGE_KEY);
-
-  
-  if (retrievedContacts) {
-    setContacts(JSON.parse(retrievedContacts));
-  }
-}, []);  
-
-useEffect(() => {
-  if (contacts && contacts.length > 0) {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts)); 
-  }
-}, [contacts]);  
-
-  return(
-    <div className="ui container">
+    return(
+    <div className="container">
       <Router>
-        
-      <Header/>
-      <Switch>
-      <Route path="/add" component={AddContact}/>
-      <Route path="/" component={ContactList}/>
-      </Switch>
-      {/*<AddContact addContactHandler={addContactHandler}/>
-      <ContactList contacts={contacts} getContactId={removeContactHandler}/>*/}
+        <Navbar />
+        <Switch>
+        <Route path="/" exact component={Home}/>
+        <Route path="/features" component={KeyFeature}/>
+        <Route path="/Pricing" component={Pricing}/>
+        <Route path="/Timonial" component={Timonial}/>
+        <Route path="/demo" component={Demo}/>
+        </Switch>
       </Router>
-      
-     
     </div>
   );
 }
