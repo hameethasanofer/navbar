@@ -1,27 +1,27 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import './App.css'; // Import your CSS file if needed
-import Navbar from "./Navbar/Navbar"; 
-import Home from "./pages/Home"; 
-import KeyFeature from "./pages/KeyFeature";
-import Pricing from "./pages/Pricing";
-import Timonial from "./pages/Timonial";
-import Demo from "./pages/Demo";
+import React from "react";
+import Card from "./../components/Card";
+import "./App.css"; 
 
+function App() {
+  return (
+    <div className="min-h-screen bg-[#0c212a] flex flex-col items-center justify-center p-10">
+      <div className="w-full text-center">
+        <h1 className="text-4xl text-white mb-6 block">
+          Efficient and Integrated<br /> Manufacturing Services
+        </h1>
+        <p className="text-xl text-white mb-6 block">
+          Simplify operations with our efficient, quality-focused services
+        </p>
+      </div>
 
-function App(){
-    return(
-    <div className="container">
-      <Router>
-        <Navbar />
-        <Switch>
-        <Route path="/" exact component={Home}/>
-        <Route path="/features" component={KeyFeature}/>
-        <Route path="/Pricing" component={Pricing}/>
-        <Route path="/Timonial" component={Timonial}/>
-        <Route path="/demo" component={Demo}/>
-        </Switch>
-      </Router>
+      <div className="card-grid">
+        <Card title="Production and Assembly" description="Details on product processes, assembly, and product types" icon="production" />
+        <Card title="Custom Manufacturing" description="Custom product creation with design and customization options" icon="custom" />
+        <Card title="Quality Control" description="Procedures and systems to ensure high product quality" icon="quality" />
+        <Card title="Technology and Innovation" description="Latest manufacturing technologies and ongoing innovations" icon="technology" />
+        <Card title="Packaging and Logistics" description="Packaging and logistics for shipping to customers and distributors" icon="packaging" />
+        <Card title="Consulting & Market Research" description="Services to help companies understand market needs and provide strategic advice" icon="consulting" />
+      </div>
     </div>
   );
 }
